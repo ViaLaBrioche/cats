@@ -35,15 +35,6 @@ const addCatInLocalStorage = (cat) => {
 	);
 };
 
-const updateCatInLocalStorage = (catId) => {
-	store.setItem(
-		'cats',
-		JSON.stringify(
-			JSON.parse(store.getItem('cats')).filter((el) => el.id = catId) 
-		)
-	);
-};
-
 document.getElementsByClassName('content')[0]
     .addEventListener('click', (event) => {
         console.log(event.target);
@@ -71,7 +62,6 @@ document.getElementsByClassName('content')[0]
                             const formData = new FormData(modalForm); // создание конструктора формы
                             const cat = Object.fromEntries(formData.entries()); //трансформация формы в объект
                             api.updateCat(cat).then((res) => {   //отправка формы на сервер 
-                                updateCatInLocalStorage(event.target.value)
                                 refreshCatsAndContent();   // обновление котиков
                             });
                             updateModal.classList.toggle('active');  // сброс модалки
